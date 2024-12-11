@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 
-function Card(id,image,info,price,name) {
+function Card({id,image,info,price,name,removeTour}) {
 
     const [readmore,setReadmore] = useState(false);
-    const description = `${info.substring(0,200)}...`;
+    const description = readmore ? info : `${info.substring(0,200)}...`;
 
     function readmoreHandler(){
         setReadmore(!readmore);
@@ -12,7 +12,7 @@ function Card(id,image,info,price,name) {
 
     return(
         <div className="card">
-            <img src={image} className="image"></img>
+            <img src={image} className="image" alt="img"></img>
 
           <div className="tour-info">  
 
@@ -29,7 +29,7 @@ function Card(id,image,info,price,name) {
 
           </div>  
 
-            <button className="btn-red" onClick={removeTour}>
+            <button className="btn-red" onClick={()=>removeTour(id)}>
                 Not Intrested
             </button>
 
